@@ -7,12 +7,17 @@ if (typeof window !== 'undefined' && window.location.hostname.endsWith('.onrende
   const match = window.location.hostname.match(/jobportal-frontend(.*)\.onrender\.com/);
   if (match) {
     const suffix = match[1];
-    API_URL = `https://jobportal-gateway${suffix}.onrender.com`;
+    API_URL = `https://jobportal-gateway${suffix}.onrender.com/api`;
   }
 }
 
 if (API_URL && !API_URL.startsWith('http') && !API_URL.startsWith('/')) {
   API_URL = `https://${API_URL}`;
+}
+
+// Ensure absolute URLs end with the /api prefix required by the API Gateway
+if (API_URL.startsWith('http') && !API_URL.endsWith('/api')) {
+  API_URL = API_URL.replace(/\/+$/, '') + '/api';
 }
 
 const api = axios.create({
