@@ -1,6 +1,16 @@
 import axios from 'axios';
 
 let API_URL = import.meta.env.VITE_API_URL || '/api';
+
+// If running in browser and on Render, dynamically construct the public Gateway URL to match the deployment suffix.
+if (typeof window !== 'undefined' && window.location.hostname.endsWith('.onrender.com')) {
+  const match = window.location.hostname.match(/jobportal-frontend(.*)\.onrender\.com/);
+  if (match) {
+    const suffix = match[1];
+    API_URL = `https://jobportal-gateway${suffix}.onrender.com`;
+  }
+}
+
 if (API_URL && !API_URL.startsWith('http') && !API_URL.startsWith('/')) {
   API_URL = `https://${API_URL}`;
 }
