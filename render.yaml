@@ -1,0 +1,71 @@
+services:
+  # 1. PostgreSQL Database
+  - type: psql
+    name: jobportal-db
+    plan: free
+
+  # 2. Node.js Backend (MongoDB services)
+  - type: web
+    name: jobportal-nodejs
+    env: docker
+    dockerContext: ./server
+    dockerfilePath: ./server/Dockerfile
+    envVars:
+      - key: MONGO_URI
+        sync: false # Render will ask you for this value during deployment
+
+  # 3. Spring Boot Backend (SQL services)
+  - type: web
+    name: jobportal-springboot
+    env: docker
+    dockerContext: ./springboot-service
+    dockerfilePath: ./springboot-service/Dockerfile
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: jobportal-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: jobportal-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: jobportal-db
+          property: password
+
+  # 4. API Gateway (FastAPI)
+  - type: web
+    name: jobportal-gateway
+    env: docker
+    dockerContext: ./api-gateway
+    dockerfilePath: ./api-gateway/Dockerfile
+    envVars:
+      - key: SPRINGBOOT_URL
+        fromService:
+          type: web
+          name: jobportal-springboot
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: NODEJS_URL
+        fromService:
+          type: web
+          name: jobportal-nodejs
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: jobportal-frontend
+          envVarKey: RENDER_EXTERNAL_URL
+
+  # 5. Frontend (React/Vite)
+  - type: web
+    name: jobportal-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: jobportal-gateway
+          envVarKey: RENDER_EXTERNAL_URL

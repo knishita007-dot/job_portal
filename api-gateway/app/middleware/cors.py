@@ -1,16 +1,24 @@
+import os
 from fastapi.middleware.cors import CORSMiddleware
 
 
 def setup_cors(app):
     """Configure CORS for the API Gateway."""
+    
+    origins = [
+        "http://localhost:3000",    # React dev server
+        "http://localhost:5173",    # Vite dev server
+        "http://frontend:80",       # Docker frontend
+        "http://127.0.0.1:3000",
+    ]
+    
+    frontend_url = os.environ.get("FRONTEND_URL")
+    if frontend_url:
+        origins.append(frontend_url)
+
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[
-            "http://localhost:3000",    # React dev server
-            "http://localhost:5173",    # Vite dev server
-            "http://frontend:80",       # Docker frontend
-            "http://127.0.0.1:3000",
-        ],
+        allow_origins=origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
