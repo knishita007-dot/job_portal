@@ -59,16 +59,15 @@ services:
           property: host
       - key: FRONTEND_URL
         fromService:
-          type: web
+          type: static
           name: jobportal-frontend
           property: host
       - key: PORT
         value: 8000
 
   # 5. Frontend (React/Vite)
-  - type: web
+  - type: static
     name: jobportal-frontend
-    env: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     envVars:
