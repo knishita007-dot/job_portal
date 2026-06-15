@@ -14,6 +14,8 @@ def setup_cors(app):
     
     frontend_url = os.environ.get("FRONTEND_URL")
     if frontend_url:
+        if not frontend_url.startswith("http"):
+            frontend_url = f"https://{frontend_url}"
         origins.append(frontend_url)
 
     app.add_middleware(

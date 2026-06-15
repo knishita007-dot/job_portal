@@ -46,17 +46,17 @@ services:
         fromService:
           type: web
           name: jobportal-springboot
-          property: url
+          property: host
       - key: NODEJS_URL
         fromService:
           type: web
           name: jobportal-nodejs
-          property: url
+          property: host
       - key: FRONTEND_URL
         fromService:
           type: web
           name: jobportal-frontend
-          property: url
+          property: host
 
   # 5. Frontend (React/Vite)
   - type: web
@@ -69,4 +69,4 @@ services:
         fromService:
           type: web
           name: jobportal-gateway
-          property: url
+          property: host
