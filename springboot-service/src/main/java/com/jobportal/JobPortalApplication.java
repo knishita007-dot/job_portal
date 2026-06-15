@@ -13,7 +13,7 @@ public class JobPortalApplication {
             } else {
                 jdbcUrl = "jdbc:postgresql://" + dbUrl.substring("postgresql://".length());
             }
-            System.setProperty("SPRING_DATASOURCE_URL", jdbcUrl);
+            System.setProperty("spring.datasource.url", jdbcUrl);
         }
         SpringApplication.run(JobPortalApplication.class, args);
     }
