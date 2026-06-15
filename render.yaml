@@ -73,3 +73,5 @@ services:
           type: web
           name: jobportal-gateway
           property: host
+      - key: NODE_VERSION
+        value: 20
