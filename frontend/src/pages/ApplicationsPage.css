@@ -1,0 +1,95 @@
+.apps-header { margin-bottom: var(--space-8); }
+.apps-header h1 { margin-bottom: var(--space-2); }
+.apps-header p { color: var(--text-muted); }
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.application-card { padding: var(--space-5) var(--space-6); }
+
+.app-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.app-card-header h3 { font-size: 1.05rem; margin-bottom: var(--space-1); }
+.app-card-header h3 a { color: var(--text-primary); }
+.app-card-header h3 a:hover { color: var(--primary-300); }
+.app-company { font-size: 0.85rem; color: var(--text-muted); }
+
+.app-card-footer {
+  display: flex;
+  gap: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.app-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Status Progress Bar */
+.status-progress {
+  display: flex;
+  gap: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.progress-step::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-default);
+  z-index: 0;
+}
+
+.progress-step:first-child::before { left: 50%; }
+.progress-step:last-child::before { right: 50%; }
+
+.progress-step.active::before {
+  background: var(--primary-500);
+}
+
+.progress-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-default);
+  margin: 0 auto var(--space-2);
+  position: relative;
+  z-index: 1;
+  transition: all var(--transition-normal);
+}
+
+.progress-step.active .progress-dot {
+  background: var(--primary-500);
+  border-color: var(--primary-400);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+.progress-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+.progress-step.active .progress-label {
+  color: var(--primary-300);
+  font-weight: 600;
+}

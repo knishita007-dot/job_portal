@@ -1,0 +1,61 @@
+.jobs-header {
+  margin-bottom: var(--space-8);
+}
+.jobs-header h1 { margin-bottom: var(--space-2); }
+.jobs-header p { color: var(--text-muted); }
+
+.jobs-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+.keyword-search {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.keyword-search .form-input {
+  flex: 1;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family);
+}
+
+.filter-tab:hover {
+  border-color: var(--primary-400);
+  color: var(--primary-300);
+}
+
+.filter-tab.active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .job-grid { grid-template-columns: 1fr; }
+}

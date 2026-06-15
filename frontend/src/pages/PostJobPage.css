@@ -1,0 +1,33 @@
+.page-subtitle { color: var(--text-muted); margin-bottom: var(--space-6); margin-top: var(--space-2); }
+
+.post-job-form { padding: var(--space-8); margin-top: var(--space-4); }
+
+.skills-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.skill-option {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family);
+}
+
+.skill-option:hover {
+  border-color: var(--primary-400);
+  color: var(--primary-300);
+}
+
+.skill-option.selected {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: var(--primary-400);
+  color: var(--primary-300);
+  font-weight: 600;
+}
