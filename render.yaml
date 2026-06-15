@@ -1,8 +1,9 @@
-services:
+databases:
   # 1. PostgreSQL Database
-  - type: psql
-    name: jobportal-db
+  - name: jobportal-db
     plan: free
+
+services:
 
   # 2. Node.js Backend (MongoDB services)
   - type: web
