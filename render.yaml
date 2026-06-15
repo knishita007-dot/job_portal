@@ -8,6 +8,7 @@ services:
   # 2. Node.js Backend (MongoDB services)
   - type: web
     name: jobportal-nodejs
+    plan: free
     env: docker
     dockerContext: ./server
     dockerfilePath: ./server/Dockerfile
@@ -18,6 +19,7 @@ services:
   # 3. Spring Boot Backend (SQL services)
   - type: web
     name: jobportal-springboot
+    plan: free
     env: docker
     dockerContext: ./springboot-service
     dockerfilePath: ./springboot-service/Dockerfile
@@ -38,6 +40,7 @@ services:
   # 4. API Gateway (FastAPI)
   - type: web
     name: jobportal-gateway
+    plan: free
     env: docker
     dockerContext: ./api-gateway
     dockerfilePath: ./api-gateway/Dockerfile
