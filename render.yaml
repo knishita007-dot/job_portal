@@ -45,17 +45,17 @@ services:
         fromService:
           type: web
           name: jobportal-springboot
-          envVarKey: RENDER_EXTERNAL_URL
+          property: url
       - key: NODEJS_URL
         fromService:
           type: web
           name: jobportal-nodejs
-          envVarKey: RENDER_EXTERNAL_URL
+          property: url
       - key: FRONTEND_URL
         fromService:
           type: web
           name: jobportal-frontend
-          envVarKey: RENDER_EXTERNAL_URL
+          property: url
 
   # 5. Frontend (React/Vite)
   - type: web
@@ -68,4 +68,4 @@ services:
         fromService:
           type: web
           name: jobportal-gateway
-          envVarKey: RENDER_EXTERNAL_URL
+          property: url
